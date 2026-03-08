@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #ffeef2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            font-family:"Courier New", monospace;
+            background:linear-gradient(270deg, #ffeef2, pink)
+        }
+
+        .container {
+            text-align: center;
+            background: pink,blue;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10;
+            max-width: 400px;
+            animation: fadeIn 2s ease-in;
+            border:double pink;
+            margin-top:25px;
+            margin-bottom:25px;
+            margin-left:10px;
+            margin-right:10px;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .heart {
+            color: #ff4d6d;
+            font-size: 3rem;
+            animation: beat 0.8s infinite alternate;
+            display: inline-block;
+        }
+
+        @keyframes beat {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Background floating hearts */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.2);
+            font-size: 20px;
+            user-select: none;
+            z-index: 1;
+            bottom: -50px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body onclick="toggleAudio()">
+
+	<audio id="music">
+		<source src="lovestory.mp3" type="audio/mpeg">
+	</audio>
+	
+    <div class="container">
+        <div class="heart">☺️️</div>
+        <h1>Happy Birthday Cutie!</h1>
+        <p>Happy Birthday 🎉
+        I hope this year brings you lots of happiness, success, and all the things you wish for.</p>
+        <p>You’re a really special person and I’m lucky to know you.
+        Enjoy your day 😊 ✨</p>
+    </div>
+
+    <script>
+    let audio = document.getElementById("music")
+    audio.currentTime = 8;
+    
+    function toggleAudio() {
+   		 if (audio.paused) {
+   			 audio.play();
+   			 } else {
+   				 audio.pause();
+   			 }
+   		 }	
+    
+    
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('bg-heart');
+            heart.innerHTML = '️️❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
